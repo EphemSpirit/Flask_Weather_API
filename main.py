@@ -1,16 +1,25 @@
-# This is a sample Python script.
+import pandas
+from flask import Flask, render_template
 
-# Press Ctrl+F5 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press F9 to toggle the breakpoint.
+app = Flask(__name__)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+@app.route("/")
+def home():
+    return render_template("home.html")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+@app.route("/api/v1/<station_id>/<date>")
+def about(station_id, date):
+    # df = pandas.read_csv("")
+    # temp = df.station
+    temp = 23
+    return {
+        "station_id": station_id,
+        "date": date,
+        "temperature": temp
+    }
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
